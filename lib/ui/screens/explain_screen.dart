@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 
-class SecondScreen extends StatefulWidget {
-  const SecondScreen({Key? key}) : super(key: key);
+class ExplainScreen extends StatefulWidget {
+  static const String routeName = 'explain screen';
+  const ExplainScreen({Key? key}) : super(key: key);
 
   @override
-  State<SecondScreen> createState() => _SecondScreenState();
+  State<ExplainScreen> createState() => _ExplainScreenState();
 }
 
-class _SecondScreenState extends State<SecondScreen> {
+class _ExplainScreenState extends State<ExplainScreen> {
   @override
   Widget build(BuildContext context) {
     return DecoratedBox(

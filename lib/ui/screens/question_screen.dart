@@ -2,93 +2,94 @@ import 'dart:math';
 
 import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
-import 'package:question_master/core/domain/quiz.dart';
-import 'package:question_master/ui/screens/second_screen.dart';
+import 'package:question_master/core/domain/quiz_model.dart';
+import 'package:question_master/ui/screens/explain_screen.dart';
 
 //Shout out to https://levelup.gitconnected.com/101-beginner-facts-on-flutter-ba6587458c95 for the awesome facts about flutter ;)
-final kQuizList = <Quiz>[
-  Quiz(
+final kQuizList = <QuizModel>[
+  QuizModel(
       question: 'Flutter is written in the beautiful and mighty language dart',
       image: 'assets/images/flutter_image.png',
       isFirstAnswerTrue: true),
-  Quiz(
+  QuizModel(
       question:
           'Due to its simplicity ,high performance resulting from its development rich user interface, Flutter will have a significant impact on the development of high-quality, feature-packed mobile applications in the near future',
       image: 'assets/images/happy_boy.jpg',
       isFirstAnswerTrue: true),
-  Quiz(
+  QuizModel(
       question: 'Flutter offers no UI widgets compared to React and other front-End Frameworks!!',
       image: 'assets/images/horse_laughing.jpg',
       isFirstAnswerTrue: false),
-  Quiz(
+  QuizModel(
       question:
           'Flutter’s hot reload is the feature that allows it to offer faster performance. With it, the application gets compiled using the arm Rust library, making it closer to machine code and enabling it to run more quickly.',
       image: 'assets/images/hot_image.jpg',
       isFirstAnswerTrue: false),
-  Quiz(
+  QuizModel(
       question:
           'In Flutter there is a Good Community support where developers ask questions and get answered very quickly',
       image: 'assets/images/community_image.jpg',
       isFirstAnswerTrue: true),
-  Quiz(
+  QuizModel(
       question:
           'In contrast to most cross-platform frameworks, Flutter does rely on intermediate code representations or interpretations.',
       image: 'assets/images/code_image.jpg',
       isFirstAnswerTrue: false),
-  Quiz(
+  QuizModel(
       question:
           'Using Flutter, you can write code, manage, and run it across multiple platforms. For the developers, this saves time, money, and effort.',
       image: 'assets/images/platform_image.jpg',
       isFirstAnswerTrue: true),
-  Quiz(
+  QuizModel(
       question:
           'Flutter offers a customizable layered architecture that allows for highly customizable designs, expressive UIs, and slow rendering.',
       image: 'assets/images/architecture_image.jpg',
       isFirstAnswerTrue: false),
-  Quiz(
+  QuizModel(
       question:
           'The structure of Flutter consists of three layers:- Framework Dart, Engine C/C++,Embedder Platform-specific',
       image: 'assets/images/cplus_image.jpg',
       isFirstAnswerTrue: true),
-  Quiz(
+  QuizModel(
       question:
           'The Dart-based platform that takes care of app widgets, gestures, animations, illustrations, and materials',
       image: 'assets/images/platform_image.jpg',
       isFirstAnswerTrue: true),
-  Quiz(
+  QuizModel(
       question:
           'Flutter app development relies on multiple framework and platform for the development, deployment, and management of changes, rather than using separate platforms and frameworks for different purposes.',
       image: 'assets/images/frame_image.jpg',
       isFirstAnswerTrue: false),
-  Quiz(
+  QuizModel(
       question: 'Flutter app development provides widgets customized for Android, iOS, and Google Fuchsia.',
       image: 'assets/images/3d_image.jpg',
       isFirstAnswerTrue: true),
-  Quiz(
+  QuizModel(
       question:
           'It is because of Flutter’s ready-to-use widget library that developers can develop apps faster when using the framework. In addition to a wide variety of widgets, it does not include animations with which you can spice up your application.',
       image: 'assets/images/variety_image.jpg',
       isFirstAnswerTrue: false),
-  Quiz(
+  QuizModel(
       question:
           'Since Flutter is relatively new, the number of third-party libraries is small. Additionally, some widgets in Flutter are only available on one platform.',
       image: 'assets/images/new_image.jpg',
       isFirstAnswerTrue: true),
-  Quiz(
+  QuizModel(
       question:
           'Dart is an Object-oriented programming language, but it cannot compete with Java, JavaScript, or C# since it is still relatively new. As a result, developers hate it.',
       image: 'assets/images/object_image.jpg',
       isFirstAnswerTrue: false),
 ];
 
-class FirstScreen extends StatefulWidget {
-  const FirstScreen({Key? key}) : super(key: key);
+class QuestionScreen extends StatefulWidget {
+  static const String routeName = 'question screen';
+  const QuestionScreen({Key? key}) : super(key: key);
 
   @override
-  State<FirstScreen> createState() => _FirstScreenState();
+  State<QuestionScreen> createState() => _QuestionScreenState();
 }
 
-class _FirstScreenState extends State<FirstScreen> {
+class _QuestionScreenState extends State<QuestionScreen> {
   final scrollController = PageController();
 
   int correctAnswerCounter = 0;
@@ -184,7 +185,7 @@ class _FirstScreenState extends State<FirstScreen> {
                                 padding: EdgeInsets.symmetric(horizontal: 24).copyWith(bottom: 40),
                                 child: TextButton(
                                   onPressed: (){
-                                    Navigator.push(context, MaterialPageRoute(builder: (_)=>SecondScreen()));
+                                    Navigator.push(context, MaterialPageRoute(builder: (_)=>ExplainScreen()));
                                   },
                                   child: Text('Wanna know more about the app?',
                                     textAlign: TextAlign.center,
