@@ -5,15 +5,15 @@ import 'package:question_master/const/asset_paths.dart';
 import 'package:question_master/core/services/navigation_service.dart';
 
 ///Explains the reason why this app has been
-class ExplainScreen extends StatefulWidget {
+class ExplanationScreen extends StatefulWidget {
   static const String routeName = 'explain screen';
-  const ExplainScreen({Key? key}) : super(key: key);
+  const ExplanationScreen({Key? key}) : super(key: key);
 
   @override
-  State<ExplainScreen> createState() => _ExplainScreenState();
+  State<ExplanationScreen> createState() => _ExplanationScreenState();
 }
 
-class _ExplainScreenState extends State<ExplainScreen> {
+class _ExplanationScreenState extends State<ExplanationScreen> {
   @override
   Widget build(BuildContext context) {
     return DecoratedBox(
@@ -21,15 +21,11 @@ class _ExplainScreenState extends State<ExplainScreen> {
           image: DecorationImage(image: AssetImage(AssetPaths.image.paradise), fit: BoxFit.cover)),
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.white,
           title: Text(
             AppStrings.why_this_app.tr(),
-            style: TextStyle(color: Colors.black),
           ),
           centerTitle: true,
-          leading: BackButton(
-            color: Colors.black,
-          ),
+          automaticallyImplyLeading: true,
         ),
         backgroundColor: Colors.transparent,
         body: Align(

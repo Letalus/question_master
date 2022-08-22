@@ -37,12 +37,9 @@ class MyApp extends StatelessWidget {
             localizationsDelegates: context.localizationDelegates,
             supportedLocales: context.supportedLocales,
             locale: context.locale,
-            theme: ThemeData(
-              primarySwatch: Colors.blue,
-            ),
-            builder: (context, child){
-              return child!;
-            },
+            theme: AppConstants.theme.light,
+            darkTheme: AppConstants.theme.dark,
+            themeMode: ThemeMode.system,
             onGenerateRoute: CustomRouter.generateRoute,
             navigatorKey: NavigationService.instance.navigatorKey,
             home: Builder(

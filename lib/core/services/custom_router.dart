@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:question_master/ui/screens/explain_screen.dart';
+import 'package:question_master/ui/screens/explanation_screen.dart';
 import 'package:question_master/ui/screens/question_screen.dart';
 
 class CustomRouter {
@@ -7,10 +7,10 @@ class CustomRouter {
     switch (settings.name) {
       case QuestionScreen.routeName:
         return MaterialPageRoute(settings: settings, builder: (context) => const QuestionScreen());
-      case ExplainScreen.routeName:
+      case ExplanationScreen.routeName:
         return MaterialPageRoute(
             settings: settings,
-            builder: (context) => const ExplainScreen());
+            builder: (context) => const ExplanationScreen());
       default:
         return MaterialPageRoute(settings: settings, builder: (context) => const QuestionScreen());
     }

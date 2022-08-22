@@ -7,7 +7,7 @@ import 'package:question_master/const/app_strings.dart';
 import 'package:question_master/const/asset_paths.dart';
 import 'package:question_master/core/domain/quiz_model.dart';
 import 'package:question_master/core/services/navigation_service.dart';
-import 'package:question_master/ui/screens/explain_screen.dart';
+import 'package:question_master/ui/screens/explanation_screen.dart';
 
 //Shout out to https://levelup.gitconnected.com/101-beginner-facts-on-flutter-ba6587458c95 for the awesome facts about flutter ;)
 final kQuizList = <QuizModel>[
@@ -78,16 +78,14 @@ class _QuestionScreenState extends State<QuestionScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final quizQuestions = kQuizList.take(kQuizList.length);
+    final quizQuestions = kQuizList.take(1);
     return DecoratedBox(
       decoration:
           BoxDecoration(image: DecorationImage(image: AssetImage(AssetPaths.image.paradise), fit: BoxFit.cover)),
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.white,
           title: Text(
             AppStrings.question_master.tr(),
-            style: TextStyle(color: Colors.black),
           ),
           centerTitle: true,
           actions: [
@@ -158,7 +156,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
                                 padding: EdgeInsets.symmetric(horizontal: 24).copyWith(bottom: 40),
                                 child: TextButton(
                                   onPressed: () {
-                                    NavigationService.instance.navigateTo(ExplainScreen.routeName);
+                                    NavigationService.instance.navigateTo(ExplanationScreen.routeName);
                                   },
                                   child: Text(
                                     AppStrings.wanna_know_more.tr(),

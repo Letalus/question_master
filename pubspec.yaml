@@ -1,4 +1,4 @@
-name: question_master
+name: Question Master
 description: Answer questions as fast as you can
 
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev

@@ -12,5 +12,6 @@ class QMTextColor{
 }
 
 class QMBaseColor {
-  final Color primary = const Color(0xFF01E5B4);
+  final Color primary = const Color(0xFF00AD86);
+  final Color primaryDark = const Color(0xFF00C69E);
 }
