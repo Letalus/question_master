@@ -1,4 +1,4 @@
-name: Question Master
+name: question_master
 description: Answer questions as fast as you can
 
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
@@ -13,6 +13,8 @@ dependencies:
 
   confetti: ^0.7.0
   easy_localization: ^3.0.1
+  get_it: ^7.2.0
+  rxdart: ^0.27.5
 
 dev_dependencies:
   flutter_test:

@@ -6,6 +6,7 @@ class AppConstants {
 
   static final AppLocales locale = AppLocales();
   static final AppTheme theme = AppTheme();
+  static const bool isTest = true;
 }
 
 class AppLocales {

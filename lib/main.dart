@@ -5,6 +5,7 @@ import 'package:question_master/const/app_constants.dart';
 import 'package:question_master/const/sizes.dart';
 import 'package:question_master/core/services/custom_router.dart';
 import 'package:question_master/core/services/navigation_service.dart';
+import 'package:question_master/core/utils/get_it.dart';
 import 'package:question_master/ui/screens/question_screen.dart';
 
 void main() async{
@@ -16,6 +17,7 @@ void main() async{
   ]);
 
   await EasyLocalization.ensureInitialized();
+  setupGetIt();
 
   runApp(const MyApp());
 }
