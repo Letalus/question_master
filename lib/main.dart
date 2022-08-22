@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:question_master/first_screen.dart';
+import 'package:question_master/const/sizes.dart';
+import 'package:question_master/ui/screens/first_screen.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -27,7 +28,12 @@ class MyApp extends StatelessWidget {
       builder: (context, child){
         return child!;
       },
-      home: const FirstScreen(),
+      home: Builder(
+        builder: (context) {
+          SizeConfig.init(context);
+          return const FirstScreen();
+        }
+      ),
     );
   }
 }

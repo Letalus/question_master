@@ -2,8 +2,8 @@ import 'dart:math';
 
 import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
-import 'package:question_master/quiz.dart';
-import 'package:question_master/second_screen.dart';
+import 'package:question_master/core/domain/quiz.dart';
+import 'package:question_master/ui/screens/second_screen.dart';
 
 //Shout out to https://levelup.gitconnected.com/101-beginner-facts-on-flutter-ba6587458c95 for the awesome facts about flutter ;)
 final kQuizList = <Quiz>[
