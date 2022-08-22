@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:question_master/core/services/navigation_service.dart';
 
 class ExplainScreen extends StatefulWidget {
   static const String routeName = 'explain screen';
@@ -56,7 +57,7 @@ class _ExplainScreenState extends State<ExplainScreen> {
                     ),
                     TextButton(
                         onPressed: () {
-                          Navigator.pop(context);
+                          NavigationService.instance.pop();
                         },
                         child: Text('Enjoy!', style: TextStyle(fontSize: 20),)),
                     SizedBox(height: 24,)

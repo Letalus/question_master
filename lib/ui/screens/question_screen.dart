@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
 import 'package:question_master/core/domain/quiz_model.dart';
+import 'package:question_master/core/services/navigation_service.dart';
 import 'package:question_master/ui/screens/explain_screen.dart';
 
 //Shout out to https://levelup.gitconnected.com/101-beginner-facts-on-flutter-ba6587458c95 for the awesome facts about flutter ;)
@@ -185,7 +186,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
                                 padding: EdgeInsets.symmetric(horizontal: 24).copyWith(bottom: 40),
                                 child: TextButton(
                                   onPressed: (){
-                                    Navigator.push(context, MaterialPageRoute(builder: (_)=>ExplainScreen()));
+                                    NavigationService.instance.navigateTo(ExplainScreen.routeName);
                                   },
                                   child: Text('Wanna know more about the app?',
                                     textAlign: TextAlign.center,

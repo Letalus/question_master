@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:question_master/const/sizes.dart';
+import 'package:question_master/core/services/custom_router.dart';
+import 'package:question_master/core/services/navigation_service.dart';
 import 'package:question_master/ui/screens/question_screen.dart';
 
 void main() async{
@@ -28,6 +30,8 @@ class MyApp extends StatelessWidget {
       builder: (context, child){
         return child!;
       },
+      onGenerateRoute: CustomRouter.generateRoute,
+      navigatorKey: NavigationService.instance.navigatorKey,
       home: Builder(
         builder: (context) {
           SizeConfig.init(context);
