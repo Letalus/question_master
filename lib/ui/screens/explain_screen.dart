@@ -1,6 +1,10 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:question_master/const/app_strings.dart';
+import 'package:question_master/const/asset_paths.dart';
 import 'package:question_master/core/services/navigation_service.dart';
 
+///Explains the reason why this app has been
 class ExplainScreen extends StatefulWidget {
   static const String routeName = 'explain screen';
   const ExplainScreen({Key? key}) : super(key: key);
@@ -14,12 +18,12 @@ class _ExplainScreenState extends State<ExplainScreen> {
   Widget build(BuildContext context) {
     return DecoratedBox(
       decoration: BoxDecoration(
-          image: DecorationImage(image: AssetImage('assets/images/paradise_image.jpg'), fit: BoxFit.cover)),
+          image: DecorationImage(image: AssetImage(AssetPaths.image.paradise), fit: BoxFit.cover)),
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.white,
           title: Text(
-            'Question master',
+            AppStrings.why_this_app.tr(),
             style: TextStyle(color: Colors.black),
           ),
           centerTitle: true,
@@ -45,13 +49,13 @@ class _ExplainScreenState extends State<ExplainScreen> {
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
                           image:
-                              DecorationImage(image: AssetImage('assets/images/horror_image.jpg'), fit: BoxFit.cover)),
+                              DecorationImage(image: AssetImage(AssetPaths.image.horror), fit: BoxFit.cover)),
                       constraints: BoxConstraints(minHeight: 100, maxHeight: 250),
                     ),
                     Padding(
                       padding: EdgeInsets.symmetric(vertical: 24, horizontal: 24),
                       child: Text(
-                        'This App is solely written for flutter lovers who want to experience the horror of a bad app structure and code style first hand :D',
+                        AppStrings.app_was_written_because.tr(),
                         style: TextStyle(fontSize: 20, height: 1.3),
                       ),
                     ),
@@ -59,7 +63,7 @@ class _ExplainScreenState extends State<ExplainScreen> {
                         onPressed: () {
                           NavigationService.instance.pop();
                         },
-                        child: Text('Enjoy!', style: TextStyle(fontSize: 20),)),
+                        child: Text(AppStrings.enjoy.tr(), style: TextStyle(fontSize: 20),)),
                     SizedBox(height: 24,)
                   ],
                 ),
