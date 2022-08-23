@@ -1,6 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:question_master/const/app_strings.dart';
+import 'package:question_master/const/colors.dart';
+import 'package:question_master/core/services/navigation_service.dart';
 
 class QuestionAppBar extends AppBar {
   final int correctAnswerCounter;
@@ -18,11 +20,11 @@ class QuestionAppBar extends AppBar {
                 children: [
                   Text(
                     correctAnswerCounter.toString(),
-                    style: TextStyle(color: Colors.yellow[800], fontSize: 20),
+                    style: Theme.of(navigationContext).textTheme.bodyMedium!.copyWith(color: ThemeColors.base.gold),
                   ),
                   Icon(
                     Icons.star_rate_rounded,
-                    color: Colors.yellow[800],
+                    color: ThemeColors.base.gold,
                   ),
                 ],
               ),

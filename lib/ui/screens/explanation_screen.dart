@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:question_master/const/app_strings.dart';
 import 'package:question_master/const/asset_paths.dart';
+import 'package:question_master/const/colors.dart';
 import 'package:question_master/const/sizes.dart';
 import 'package:question_master/core/services/navigation_service.dart';
 import 'package:question_master/ui/shared/card_tile.dart';
@@ -38,7 +39,7 @@ class _ExplanationScreenState extends State<ExplanationScreen> {
                 },
                 child: Text(
                   AppStrings.enjoy.tr(),
-                  style: Theme.of(context).textTheme.bodyMedium,
+                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: ThemeColors.base.gold),
                 )),
             SizedBox(
               height: SizeConfig.tile.margin,

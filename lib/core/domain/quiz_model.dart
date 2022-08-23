@@ -4,14 +4,14 @@ class QuizModel {
 
   ///Depending on the amount answers the position can range between 0 - X
   ///If the correctAnswerPosition is negative, then there is no correct position available
-  final int correctAnswerPosition;
+  final bool isCorrect;
 
 //<editor-fold desc="Data Methods">
 
   QuizModel({
     required this.question,
     required this.image,
-    required this.correctAnswerPosition,
+    required this.isCorrect,
   });
 
   @override
@@ -21,25 +21,25 @@ class QuizModel {
           runtimeType == other.runtimeType &&
           question == other.question &&
           image == other.image &&
-          correctAnswerPosition == other.correctAnswerPosition);
+          isCorrect == other.isCorrect);
 
   @override
-  int get hashCode => question.hashCode ^ image.hashCode ^ correctAnswerPosition.hashCode;
+  int get hashCode => question.hashCode ^ image.hashCode ^ isCorrect.hashCode;
 
   @override
   String toString() {
-    return 'QuizModel{'  ' question: $question,'  ' image: $image,'  ' correctAnswerPosition: $correctAnswerPosition,'  '}';
+    return 'QuizModel{'  ' question: $question,'  ' image: $image,'  ' isCorrect: $isCorrect,'  '}';
   }
 
   QuizModel copyWith({
     String? question,
     String? image,
-    int? correctAnswerPosition,
+    bool? isCorrect,
   }) {
     return QuizModel(
       question: question ?? this.question,
       image: image ?? this.image,
-      correctAnswerPosition: correctAnswerPosition ?? this.correctAnswerPosition,
+      isCorrect: isCorrect ?? this.isCorrect,
     );
   }
 
@@ -47,7 +47,7 @@ class QuizModel {
     return {
       'question': question,
       'image': image,
-      'correctAnswerPosition': correctAnswerPosition,
+      'isCorrect': isCorrect,
     };
   }
 
@@ -55,7 +55,7 @@ class QuizModel {
     return QuizModel(
       question: map['question'] as String,
       image: map['image'] as String,
-      correctAnswerPosition: map['correctAnswerPosition'] as int,
+      isCorrect: map['isCorrect'] as bool,
     );
   }
 

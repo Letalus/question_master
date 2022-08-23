@@ -1,8 +1,7 @@
-import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:question_master/core/domain/quiz_model.dart';
-import 'package:question_master/core/repository/question_repository.dart';
-import 'package:question_master/core/utils/get_it.dart';
+import 'package:question_master/core/provider/controllers/question_controller.dart';
 import 'package:question_master/ui/shared/qm_error_widget.dart';
 import 'package:question_master/ui/shared/qm_loading_indicator.dart';
 import 'package:question_master/ui/shared/qm_scaffold.dart';
@@ -10,49 +9,31 @@ import 'package:question_master/ui/widgets/question_screen/question_app_bar.dart
 import 'package:question_master/ui/widgets/question_screen/question_finished_tile.dart';
 import 'package:question_master/ui/widgets/question_screen/question_tile.dart';
 
-class QuestionScreen extends StatefulWidget {
+class QuestionScreen extends ConsumerStatefulWidget {
   static const String routeName = 'question screen';
 
   const QuestionScreen({Key? key}) : super(key: key);
 
   @override
-  State<QuestionScreen> createState() => _QuestionScreenState();
+  ConsumerState<QuestionScreen> createState() => _QuestionScreenState();
 }
 
-class _QuestionScreenState extends State<QuestionScreen> {
-  final scrollController = PageController();
-
-  int correctAnswerCounter = 0;
-
-  QuestionRepositoryI get _questionRepo => getIt<QuestionRepositoryI>();
-
-  @override
-  void dispose() {
-    super.dispose();
-    scrollController.dispose();
-  }
-
+class _QuestionScreenState extends ConsumerState<QuestionScreen> {
   @override
   void initState() {
     super.initState();
-    scrollController.addListener(() {
-      setState(() {});
-    });
-
-    _questionRepo.load();
+    _questionControllerNoListener.init();
   }
 
-  final confettiController = ConfettiController(duration: const Duration(milliseconds: 900));
-  bool isAnsweredCorrect = false;
-  bool isAnsweredWrong = false;
+  QuestionController get _questionControllerNoListener => ref.read(questionController.notifier);
 
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<List<QuizModel>?>(
-        stream: _questionRepo.stream,
+        stream: _questionControllerNoListener.quizStream,
         builder: (context, snapshot) {
           return QmScaffold(
-            appBar: QuestionAppBar(correctAnswerCounter: correctAnswerCounter),
+            appBar: QuestionAppBar(correctAnswerCounter: ref.watch(questionController).data.answeredQuestions),
             body: Builder(builder: (context) {
               if (snapshot.hasError) {
                 return QmErrorWidget(error: snapshot.error!);
@@ -61,65 +42,41 @@ class _QuestionScreenState extends State<QuestionScreen> {
               }
 
               final quizQuestions = snapshot.data!;
+              print('quizQuestions: $quizQuestions');
 
-              return PageView.builder(
-                  controller: scrollController,
-                  scrollDirection: Axis.vertical,
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemCount: quizQuestions.length + 1,
-                  onPageChanged: (_) {
-                    setState(() {});
-                  },
-                  itemBuilder: (context, index) {
-                    bool isScrollControllerReady =
-                        scrollController.position.hasPixels && scrollController.position.hasContentDimensions;
+              return AnimatedBuilder(
+                animation: _questionControllerNoListener.scrollController,
+                builder:(context, _)=> PageView.builder(
+                    controller: _questionControllerNoListener.scrollController,
+                    scrollDirection: Axis.vertical,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: quizQuestions.length + 1,
+                    onPageChanged: (_) {
+                      setState(() {});
+                    },
+                    itemBuilder: (context, index) {
+                      bool isScrollControllerReady = _questionControllerNoListener.scrollController.position.hasPixels &&
+                          _questionControllerNoListener.scrollController.position.hasContentDimensions;
 
-                    if (!isScrollControllerReady) return Container();
+                      if (!isScrollControllerReady) return Container();
 
-                    if (index == quizQuestions.length) {
-                      return QuestionFinishedTile(
-                          page: scrollController.page!, currentIndex: index, startQuizAgain: _startQuizAgain);
-                    } else {
-                      return QuestionTile(
-                          page: scrollController.page!,
-                          currentIndex: index,
-                          quizModel: quizQuestions[index],
-                          onTapButton: _checkAnswer,
-                          isAnsweredWrong: isAnsweredWrong,
-                          isAnsweredCorrect: isAnsweredCorrect,
-                          confettiController: confettiController);
-                    }
-                  });
+                      final questionData = ref.watch(questionController).data;
+                      if (index == quizQuestions.length) {
+                        return QuestionFinishedTile(
+                            page: _questionControllerNoListener.scrollController.page!, currentIndex: index, startQuizAgain: _questionControllerNoListener.startQuizAgain);
+                      } else {
+                        return QuestionTile(
+                            page: _questionControllerNoListener.scrollController.page!,
+                            currentIndex: index,
+                            quizModel: quizQuestions[index],
+                            onTapButton: _questionControllerNoListener.checkAnswer,
+                            answeredState: questionData.answeredState,
+                            confettiController: _questionControllerNoListener.confettiController);
+                      }
+                    }),
+              );
             }),
           );
         });
-  }
-
-  void _checkAnswer(bool isCorrect) async {
-    if (isCorrect) {
-      confettiController.play();
-      setState(() {
-        isAnsweredCorrect = true;
-        isAnsweredWrong = false;
-      });
-      await Future.delayed(const Duration(milliseconds: 1100));
-      confettiController.stop();
-      scrollController.nextPage(duration: const Duration(milliseconds: 900), curve: Curves.decelerate);
-      correctAnswerCounter++;
-      setState(() {
-        isAnsweredCorrect = false;
-      });
-    } else {
-      setState(() {
-        isAnsweredWrong = true;
-      });
-    }
-  }
-
-  void _startQuizAgain() async {
-    scrollController.animateToPage(0, duration: const Duration(milliseconds: 900), curve: Curves.decelerate);
-    setState(() {
-      correctAnswerCounter = 0;
-    });
   }
 }

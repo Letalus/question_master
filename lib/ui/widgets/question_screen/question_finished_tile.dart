@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:question_master/const/app_strings.dart';
 import 'package:question_master/const/asset_paths.dart';
+import 'package:question_master/const/colors.dart';
 import 'package:question_master/const/sizes.dart';
 import 'package:question_master/core/services/navigation_service.dart';
 import 'package:question_master/ui/screens/explanation_screen.dart';
@@ -34,7 +35,7 @@ class QuestionFinishedTile extends StatelessWidget {
                 child: Text(
                   AppStrings.wanna_know_more.tr(),
                   textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 20, color: Colors.yellow[800]),
+                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: ThemeColors.base.gold),
                 ),
               ),
             ),

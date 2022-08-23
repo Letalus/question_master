@@ -18,14 +18,14 @@ class AppLocales {
 class AppTheme {
   final ThemeData light = ThemeData.light().copyWith(
       primaryColor: ThemeColors.base.primary,
-      textTheme: const TextTheme(bodyMedium: TextStyle(fontSize: 20)),
+      textTheme: TextTheme(bodyMedium: TextStyle(fontSize: 20, color: ThemeColors.text.fontColor)),
       buttonTheme: ButtonThemeData(
           colorScheme: ColorScheme.light(primary: ThemeColors.base.primary), buttonColor: ThemeColors.base.primary),
       elevatedButtonTheme: ElevatedButtonThemeData(
           style: ButtonStyle(backgroundColor: MaterialStateProperty.all(ThemeColors.base.primary))));
   final ThemeData dark = ThemeData.dark().copyWith(
       primaryColor: ThemeColors.base.primaryDark,
-      textTheme: const TextTheme(bodyMedium: TextStyle(fontSize: 20)),
+      textTheme: TextTheme(bodyMedium: TextStyle(fontSize: 20, color: ThemeColors.text.fontWhite)),
       buttonTheme: ButtonThemeData(
           colorScheme: ColorScheme.dark(primary: ThemeColors.base.primaryDark),
           buttonColor: ThemeColors.base.primaryDark),
