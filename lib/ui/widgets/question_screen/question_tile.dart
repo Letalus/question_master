@@ -35,41 +35,39 @@ class QuestionTile extends StatelessWidget {
     return QuestionTileWrapper(
       page: page,
       currentIndex: currentIndex,
-      child: SingleChildScrollView(
-        child: CardTile(
-          assetImage: quizModel.image,
-          text: quizModel.question,
-          belowTextWidget: [
-            if (answeredState is AnsweredWrong)
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: SizeConfig.tile.margin).copyWith(bottom: 40),
-                child: Text(
-                  AppStrings.oops_wrong.tr(),
-                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: Colors.red),
-                ),
+      child: CardTile(
+        assetImage: quizModel.image,
+        text: quizModel.question,
+        belowTextWidget: [
+          if (answeredState is AnsweredWrong)
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: SizeConfig.tile.margin).copyWith(bottom: 40),
+              child: Text(
+                AppStrings.oops_wrong.tr(),
+                style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: Colors.red),
               ),
-            if (answeredState is AnsweredCorrect)
-              QuestionTileCorrectButton(confettiController: confettiController)
-            else
-              Row(
-                children: [
-                  Expanded(
-                      child: QmElevatedButton(
-                    borderRadius: BorderRadius.only(bottomLeft: Radius.circular(SizeConfig.tile.borderRadius)),
-                    title: AppStrings.false_tag.tr(),
-                    onPressed: () => onTapButton(!quizModel.isCorrect),
-                    backgroundColor: ThemeColors.button.grey,
-                  )),
-                  Expanded(
-                      child: QmElevatedButton(
-                    borderRadius: BorderRadius.only(bottomRight: Radius.circular(SizeConfig.tile.borderRadius)),
-                    title: AppStrings.true_tag.tr(),
-                    onPressed: () => onTapButton(quizModel.isCorrect),
-                  )),
-                ],
-              )
-          ],
-        ),
+            ),
+          if (answeredState is AnsweredCorrect)
+            QuestionTileCorrectButton(confettiController: confettiController)
+          else
+            Row(
+              children: [
+                Expanded(
+                    child: QmElevatedButton(
+                  borderRadius: BorderRadius.only(bottomLeft: Radius.circular(SizeConfig.tile.borderRadius)),
+                  title: AppStrings.false_tag.tr(),
+                  onPressed: () => onTapButton(!quizModel.isCorrect),
+                  backgroundColor: ThemeColors.button.grey,
+                )),
+                Expanded(
+                    child: QmElevatedButton(
+                  borderRadius: BorderRadius.only(bottomRight: Radius.circular(SizeConfig.tile.borderRadius)),
+                  title: AppStrings.true_tag.tr(),
+                  onPressed: () => onTapButton(quizModel.isCorrect),
+                )),
+              ],
+            )
+        ],
       ),
     );
   }
