@@ -42,7 +42,6 @@ class _QuestionScreenState extends ConsumerState<QuestionScreen> {
               }
 
               final quizQuestions = snapshot.data!;
-              print('quizQuestions: $quizQuestions');
 
               return AnimatedBuilder(
                 animation: _questionControllerNoListener.scrollController,

@@ -36,7 +36,7 @@ flutter_icons:
   image_path: "assets/images/icon/logo.png"
   remove_alpha_ios: true
   min_sdk_android: 21
-  adaptive_icon_foreground: "assets/images/icon/logo_foreground.png"
+  adaptive_icon_foreground: "assets/images/icon/logo.png"
   adaptive_icon_background: "#fee459"
 
 # For information on the generic Dart part of this file, see the
