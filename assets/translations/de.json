@@ -1,5 +1,5 @@
 {
-  "flutter_written_in": "Flutter wurde in der wunderschönen und kraftvollen Sprache Dart geschrieben.",
+  "flutter_written_in": "Flutter wurde in der wunderschönen Sprache Dart geschrieben.",
   "due_to_its_simplicity": "Due to its simplicity, high performance resulting from its development rich user interface, Flutter will have a significant impact on the development of high-quality, feature-packed mobile applications in the near future.",
   "flutter_offers_no_ui": "Flutter offers no UI widgets compared to React and other front-End Frameworks!!",
   "flutter_hot_reload": "Flutter’s hot reload is the feature that allows it to offer faster performance. With it, the application gets compiled using the arm Rust library, making it closer to machine code and enabling it to run more quickly.",

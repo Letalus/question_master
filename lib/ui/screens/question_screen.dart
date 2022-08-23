@@ -19,12 +19,6 @@ class QuestionScreen extends ConsumerStatefulWidget {
 }
 
 class _QuestionScreenState extends ConsumerState<QuestionScreen> {
-  @override
-  void initState() {
-    super.initState();
-    _questionControllerNoListener.init();
-  }
-
   QuestionController get _questionControllerNoListener => ref.read(questionController.notifier);
 
   @override
@@ -45,7 +39,7 @@ class _QuestionScreenState extends ConsumerState<QuestionScreen> {
 
               return AnimatedBuilder(
                 animation: _questionControllerNoListener.scrollController,
-                builder:(context, _)=> PageView.builder(
+                builder: (context, _) => PageView.builder(
                     controller: _questionControllerNoListener.scrollController,
                     scrollDirection: Axis.vertical,
                     physics: const NeverScrollableScrollPhysics(),
@@ -54,19 +48,22 @@ class _QuestionScreenState extends ConsumerState<QuestionScreen> {
                       setState(() {});
                     },
                     itemBuilder: (context, index) {
-                      bool isScrollControllerReady = _questionControllerNoListener.scrollController.position.hasPixels &&
-                          _questionControllerNoListener.scrollController.position.hasContentDimensions;
-
-                      if (!isScrollControllerReady) return Container();
+                      bool isScrollControllerReady =
+                          _questionControllerNoListener.scrollController.position.hasPixels &&
+                              _questionControllerNoListener.scrollController.position.hasContentDimensions;
 
                       final questionData = ref.watch(questionController).data;
+                      final page = isScrollControllerReady ? _questionControllerNoListener.scrollController.page! : 0.0;
+                      final currentIndex = isScrollControllerReady ? index : 0;
                       if (index == quizQuestions.length) {
                         return QuestionFinishedTile(
-                            page: _questionControllerNoListener.scrollController.page!, currentIndex: index, startQuizAgain: _questionControllerNoListener.startQuizAgain);
+                            page: page,
+                            currentIndex: currentIndex,
+                            startQuizAgain: _questionControllerNoListener.startQuizAgain);
                       } else {
                         return QuestionTile(
-                            page: _questionControllerNoListener.scrollController.page!,
-                            currentIndex: index,
+                            page: page,
+                            currentIndex: currentIndex,
                             quizModel: quizQuestions[index],
                             onTapButton: _questionControllerNoListener.checkAnswer,
                             answeredState: questionData.answeredState,

@@ -12,7 +12,9 @@ final questionController = StateNotifierProvider.autoDispose<QuestionController,
     (ref) => QuestionController(QuestionStateWithData(QuestionStateData.start())));
 
 class QuestionController extends StateNotifier<QuestionState> {
-  QuestionController(super.state);
+  QuestionController(super.state){
+    _init();
+  }
 
   QuestionRepositoryI get _questionRepo => getIt<QuestionRepositoryI>();
 
@@ -21,7 +23,7 @@ class QuestionController extends StateNotifier<QuestionState> {
   final scrollController = PageController();
   final confettiController = ConfettiController(duration: const Duration(milliseconds: 900));
 
-  void init() {
+  void _init() {
     _questionRepo.load();
   }
 
