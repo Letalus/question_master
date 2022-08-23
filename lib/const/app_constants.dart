@@ -19,6 +19,7 @@ class AppTheme {
   final ThemeData light = ThemeData.light().copyWith(
       primaryColor: ThemeColors.base.primary,
       textTheme: TextTheme(bodyMedium: TextStyle(fontSize: 20, color: ThemeColors.text.fontColor)),
+      appBarTheme: AppBarTheme(color: ThemeColors.base.primary),
       buttonTheme: ButtonThemeData(
           colorScheme: ColorScheme.light(primary: ThemeColors.base.primary), buttonColor: ThemeColors.base.primary),
       elevatedButtonTheme: ElevatedButtonThemeData(

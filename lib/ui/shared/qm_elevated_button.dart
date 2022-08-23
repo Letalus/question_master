@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:question_master/const/colors.dart';
 
 class QmElevatedButton extends StatelessWidget {
   const QmElevatedButton(
@@ -23,7 +24,7 @@ class QmElevatedButton extends StatelessWidget {
                 alignment: Alignment.center,
                 child: Text(
                   title,
-                  style: Theme.of(context).textTheme.bodyMedium,
+                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: ThemeColors.text.fontWhite),
                 ))));
   }
 }
