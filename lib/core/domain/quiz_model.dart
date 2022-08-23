@@ -1,14 +1,17 @@
 class QuizModel {
-  String question;
-  String image;
-  bool isFirstAnswerTrue;
+  final String question;
+  final String image;
+
+  ///Depending on the amount answers the position can range between 0 - X
+  ///If the correctAnswerPosition is negative, then there is no correct position available
+  final int correctAnswerPosition;
 
 //<editor-fold desc="Data Methods">
 
   QuizModel({
     required this.question,
     required this.image,
-    required this.isFirstAnswerTrue,
+    required this.correctAnswerPosition,
   });
 
   @override
@@ -18,25 +21,25 @@ class QuizModel {
           runtimeType == other.runtimeType &&
           question == other.question &&
           image == other.image &&
-          isFirstAnswerTrue == other.isFirstAnswerTrue);
+          correctAnswerPosition == other.correctAnswerPosition);
 
   @override
-  int get hashCode => question.hashCode ^ image.hashCode ^ isFirstAnswerTrue.hashCode;
+  int get hashCode => question.hashCode ^ image.hashCode ^ correctAnswerPosition.hashCode;
 
   @override
   String toString() {
-    return 'QuizModel{'  ' question: $question,'  ' image: $image,'  ' isFirstAnswerTrue: $isFirstAnswerTrue,'  '}';
+    return 'QuizModel{'  ' question: $question,'  ' image: $image,'  ' correctAnswerPosition: $correctAnswerPosition,'  '}';
   }
 
   QuizModel copyWith({
     String? question,
     String? image,
-    bool? isFirstAnswerTrue,
+    int? correctAnswerPosition,
   }) {
     return QuizModel(
       question: question ?? this.question,
       image: image ?? this.image,
-      isFirstAnswerTrue: isFirstAnswerTrue ?? this.isFirstAnswerTrue,
+      correctAnswerPosition: correctAnswerPosition ?? this.correctAnswerPosition,
     );
   }
 
@@ -44,7 +47,7 @@ class QuizModel {
     return {
       'question': question,
       'image': image,
-      'isFirstAnswerTrue': isFirstAnswerTrue,
+      'correctAnswerPosition': correctAnswerPosition,
     };
   }
 
@@ -52,7 +55,7 @@ class QuizModel {
     return QuizModel(
       question: map['question'] as String,
       image: map['image'] as String,
-      isFirstAnswerTrue: map['isFirstAnswerTrue'] as bool,
+      correctAnswerPosition: map['correctAnswerPosition'] as int,
     );
   }
 

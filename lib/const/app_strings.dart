@@ -25,4 +25,5 @@ class AppStrings {
   static const why_this_app = 'why_this_app';
   static const app_was_written_because = 'app_was_written_because';
   static const enjoy = 'enjoy';
+  static const some_error_happened = 'some_error_happened';
 }

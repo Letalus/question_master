@@ -24,5 +24,6 @@
   "oops_wrong": "Ups, da ist wohl ein Fehler",
   "lets_do_it_again": "Versuchs nochmal!",
   "wanna_know_more": "Willst du mehr über die App wissen",
-  "congratulation": "Congratulations you've completed the quiz!! You are truly a flutter master :)"
+  "congratulation": "Congratulations you've completed the quiz!! You are truly a flutter master :)",
+  "some_error_happened": "Ein Fehler ist aufgetreten:\n{}"
 }
