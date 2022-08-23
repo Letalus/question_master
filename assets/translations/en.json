@@ -25,5 +25,6 @@
   "lets_do_it_again": "Let's do it again!",
   "wanna_know_more": "Wanna know more about the app?",
   "congratulation": "Congratulations you've completed the quiz!! You are truly a flutter master :)",
-  "some_error_happened": "Some error happened:\n{}"
+  "some_error_happened": "Some error happened:\n{}",
+  "skip": "Skip"
 }

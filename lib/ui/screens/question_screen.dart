@@ -27,7 +27,9 @@ class _QuestionScreenState extends ConsumerState<QuestionScreen> {
         stream: _questionControllerNoListener.quizStream,
         builder: (context, snapshot) {
           return QmScaffold(
-            appBar: QuestionAppBar(correctAnswerCounter: ref.watch(questionController).data.answeredQuestions),
+            appBar: QuestionAppBar(correctAnswerCounter: ref.watch(questionController).data.answeredQuestions, onSkip: (){
+              _questionControllerNoListener.onSkip();
+            },),
             body: Builder(builder: (context) {
               if (snapshot.hasError) {
                 return QmErrorWidget(error: snapshot.error!);

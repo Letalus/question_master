@@ -6,13 +6,26 @@ import 'package:question_master/core/services/navigation_service.dart';
 
 class QuestionAppBar extends AppBar {
   final int correctAnswerCounter;
+  final VoidCallback onSkip;
 
-  QuestionAppBar({Key? key, required this.correctAnswerCounter})
-      : super(key: key,
+  QuestionAppBar({Key? key, required this.correctAnswerCounter, required this.onSkip})
+      : super(
+          key: key,
           title: Text(
             AppStrings.question_master.tr(),
           ),
           centerTitle: true,
+          leading: TextButton(
+              onPressed: () {
+                onSkip();
+              },
+              child: Text(
+                AppStrings.skip.tr(),
+                style: Theme.of(navigationContext)
+                    .textTheme
+                    .bodyMedium!
+                    .copyWith(color: Theme.of(navigationContext).textTheme.bodyMedium!.color!.withOpacity(.3), fontWeight: FontWeight.w200),
+              )),
           actions: [
             Padding(
               padding: const EdgeInsets.all(12.0),

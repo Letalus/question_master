@@ -12,7 +12,7 @@ final questionController = StateNotifierProvider.autoDispose<QuestionController,
     (ref) => QuestionController(QuestionStateWithData(QuestionStateData.start())));
 
 class QuestionController extends StateNotifier<QuestionState> {
-  QuestionController(super.state){
+  QuestionController(super.state) {
     _init();
   }
 
@@ -56,5 +56,23 @@ class QuestionController extends StateNotifier<QuestionState> {
   void startQuizAgain() async {
     scrollController.animateToPage(0, duration: const Duration(milliseconds: 900), curve: Curves.decelerate);
     state = state.copyWith(state.data.copyWith(answeredState: AnsweredNone(), answeredQuestions: 0));
+  }
+
+  void onSkip() async {
+    if (_questionRepo.data?.isEmpty ?? true) {
+      debugPrint('Nothing has been loaded yet. Please load the question repo');
+      return;
+    }
+
+    const animationDuration = Duration(milliseconds: 3000);
+
+    scrollController.animateToPage(_questionRepo.data!.length,
+        duration: animationDuration, curve: Curves.decelerate);
+
+    final spliceDuration = Duration(milliseconds: animationDuration.inMilliseconds ~/ _questionRepo.data!.length);
+    while(state.data.answeredQuestions < _questionRepo.data!.length){
+      state = state.copyWith(state.data.copyWith(answeredQuestions: state.data.answeredQuestions+1));
+      await Future.delayed(spliceDuration);
+    }
   }
 }

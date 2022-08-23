@@ -7,9 +7,10 @@ import 'package:question_master/const/sizes.dart';
 import 'package:question_master/core/domain/quiz_model.dart';
 import 'package:question_master/core/provider/states/answered_state.dart';
 import 'package:question_master/ui/shared/card_tile.dart';
+import 'package:question_master/ui/shared/card_tile_wrapper.dart';
 import 'package:question_master/ui/shared/qm_elevated_button.dart';
 import 'package:question_master/ui/widgets/question_screen/question_tile_correct_button.dart';
-import 'package:question_master/ui/widgets/question_screen/question_tile_wrapper.dart';
+import 'package:question_master/ui/widgets/question_screen/question_tile_animation.dart';
 
 class QuestionTile extends StatelessWidget {
   const QuestionTile(
@@ -32,43 +33,45 @@ class QuestionTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return QuestionTileWrapper(
-      page: page,
-      currentIndex: currentIndex,
-      child: SingleChildScrollView(
-        child: CardTile(
-          assetImage: quizModel.image,
-          text: quizModel.question,
-          belowTextWidget: [
-            if (answeredState is AnsweredWrong)
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: SizeConfig.tile.margin).copyWith(bottom: 40),
-                child: Text(
-                  AppStrings.oops_wrong.tr(),
-                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: Colors.red),
+    return CardTileWrapper(
+      child: QuestionTileAnimation(
+        page: page,
+        currentIndex: currentIndex,
+        child: SingleChildScrollView(
+          child: CardTile(
+            assetImage: quizModel.image,
+            text: quizModel.question,
+            belowTextWidget: [
+              if (answeredState is AnsweredWrong)
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: SizeConfig.tile.margin).copyWith(bottom: 40),
+                  child: Text(
+                    AppStrings.oops_wrong.tr(),
+                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: Colors.red),
+                  ),
                 ),
-              ),
-            if (answeredState is AnsweredCorrect)
-              QuestionTileCorrectButton(confettiController: confettiController)
-            else
-              Row(
-                children: [
-                  Expanded(
-                      child: QmElevatedButton(
-                    borderRadius: BorderRadius.only(bottomLeft: Radius.circular(SizeConfig.tile.borderRadius)),
-                    title: AppStrings.false_tag.tr(),
-                    onPressed: () => onTapButton(!quizModel.isCorrect),
-                    backgroundColor: ThemeColors.button.grey,
-                  )),
-                  Expanded(
-                      child: QmElevatedButton(
-                    borderRadius: BorderRadius.only(bottomRight: Radius.circular(SizeConfig.tile.borderRadius)),
-                    title: AppStrings.true_tag.tr(),
-                    onPressed: () => onTapButton(quizModel.isCorrect),
-                  )),
-                ],
-              )
-          ],
+              if (answeredState is AnsweredCorrect)
+                QuestionTileCorrectButton(confettiController: confettiController)
+              else
+                Row(
+                  children: [
+                    Expanded(
+                        child: QmElevatedButton(
+                      borderRadius: BorderRadius.only(bottomLeft: Radius.circular(SizeConfig.tile.borderRadius)),
+                      title: AppStrings.false_tag.tr(),
+                      onPressed: () => onTapButton(!quizModel.isCorrect),
+                      backgroundColor: ThemeColors.button.grey,
+                    )),
+                    Expanded(
+                        child: QmElevatedButton(
+                      borderRadius: BorderRadius.only(bottomRight: Radius.circular(SizeConfig.tile.borderRadius)),
+                      title: AppStrings.true_tag.tr(),
+                      onPressed: () => onTapButton(quizModel.isCorrect),
+                    )),
+                  ],
+                )
+            ],
+          ),
         ),
       ),
     );

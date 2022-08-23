@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class QuestionTileWrapper extends StatelessWidget {
+class QuestionTileAnimation extends StatelessWidget {
   final double page;
   final int currentIndex;
   final Widget child;
 
-  const QuestionTileWrapper({Key? key, required this.page, required this.currentIndex, required this.child})
+  const QuestionTileAnimation({Key? key, required this.page, required this.currentIndex, required this.child})
       : super(key: key);
 
   @override

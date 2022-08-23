@@ -6,6 +6,7 @@ import 'package:question_master/const/colors.dart';
 import 'package:question_master/const/sizes.dart';
 import 'package:question_master/core/services/navigation_service.dart';
 import 'package:question_master/ui/shared/card_tile.dart';
+import 'package:question_master/ui/shared/card_tile_wrapper.dart';
 import 'package:question_master/ui/shared/qm_scaffold.dart';
 
 ///Explains the reason why this app has been
@@ -29,22 +30,24 @@ class _ExplanationScreenState extends State<ExplanationScreen> {
           centerTitle: true,
           automaticallyImplyLeading: true,
         ),
-        body: CardTile(
-          assetImage: AssetPaths.image.horror,
-          text: AppStrings.app_was_written_because.tr(),
-          belowTextWidget: [
-            TextButton(
-                onPressed: () {
-                  NavigationService.instance.pop();
-                },
-                child: Text(
-                  AppStrings.enjoy.tr(),
-                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: ThemeColors.base.gold),
-                )),
-            SizedBox(
-              height: SizeConfig.tile.margin,
-            )
-          ],
+        body: CardTileWrapper(
+          child: CardTile(
+            assetImage: AssetPaths.image.horror,
+            text: AppStrings.app_was_written_because.tr(),
+            belowTextWidget: [
+              TextButton(
+                  onPressed: () {
+                    NavigationService.instance.pop();
+                  },
+                  child: Text(
+                    AppStrings.enjoy.tr(),
+                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: ThemeColors.base.gold),
+                  )),
+              SizedBox(
+                height: SizeConfig.tile.margin,
+              )
+            ],
+          ),
         ));
   }
 }
